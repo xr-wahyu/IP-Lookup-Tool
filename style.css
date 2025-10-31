@@ -1,0 +1,234 @@
+/* == CSS Reset Sederhana == */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* == Tampilan Utama == */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7f6;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+/* == Header == */
+.site-header {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    padding: 1.5rem 0;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.site-header h1 {
+    margin: 0;
+    font-size: 2.2rem;
+    font-weight: 600;
+}
+
+/* == Konten Utama == */
+main {
+    padding: 2rem 0;
+}
+
+/* == Card Styling (untuk semua kotak) == */
+.card {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.07);
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+/* == Bagian Input IP == */
+#lookup-form {
+    display: flex;
+    gap: 0.75rem;
+}
+#ip-input {
+    flex: 1;
+    font-size: 1.1rem;
+    padding: 0.75rem 1rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    transition: border-color 0.3s;
+}
+#ip-input:focus {
+    border-color: #3498db;
+    outline: none;
+}
+.btn {
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: #fff;
+}
+.btn-primary {
+    background-color: #3498db;
+}
+.btn-primary:hover {
+    background-color: #2980b9;
+}
+.btn-secondary {
+    background-color: #2ecc71;
+}
+.btn-secondary:hover {
+    background-color: #27ae60;
+}
+
+#my-ip-btn {
+    display: block;
+    width: 100%;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+/* == Kotak Hasil == */
+#result-wrapper {
+    position: relative;
+    display: none; /* Sembunyi secara default */
+}
+
+/* Loader */
+.loader {
+    display: none; /* Sembunyi */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #3498db;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+@keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+#result-box.loading + .loader {
+    display: block;
+}
+#result-box.loading #result-content {
+    filter: blur(4px);
+    opacity: 0.5;
+}
+
+/* Konten Hasil */
+#result-content {
+    transition: filter 0.3s, opacity 0.3s;
+}
+.result-title {
+    color: #3498db;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 0.5rem;
+}
+.result-row {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+.result-row:last-child {
+    border-bottom: none;
+}
+.result-row strong {
+    flex-basis: 180px;
+    color: #555;
+    font-weight: 600;
+}
+.result-row span {
+    flex: 1;
+    min-width: 200px;
+    color: #000;
+    font-weight: 500;
+}
+#ip-address-display {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #e74c3c;
+}
+#local-time-display {
+    color: #2c3e50;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+/* == Tombol Aksi (Copy/Download) == */
+#action-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+}
+.btn-action {
+    flex: 1;
+    min-width: 120px;
+    background-color: #95a5a6;
+    padding: 0.6rem 1rem;
+}
+.btn-action:hover {
+    background-color: #7f8c8d;
+}
+
+/* == FAQ == */
+.faq-title {
+    text-align: center;
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+details {
+    background: #fff;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    border: 1px solid #eee;
+}
+summary {
+    padding: 1rem 1.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    list-style: none; /* Hapus panah default */
+    position: relative;
+}
+summary::-webkit-details-marker {
+    display: none; /* Hapus panah di Chrome */
+}
+summary::after { /* Buat panah custom */
+    content: '▼';
+    position: absolute;
+    right: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: transform 0.2s;
+}
+details[open] summary::after {
+    transform: translateY(-50%) rotate(180deg);
+}
+.faq-content {
+    padding: 0 1.5rem 1.5rem 1.5rem;
+    border-top: 1px solid #eee;
+}
+
+/* == Footer == */
+.site-footer {
+    background-color: #34495e;
+    color: #bdc3c7;
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: 2rem;
+}
