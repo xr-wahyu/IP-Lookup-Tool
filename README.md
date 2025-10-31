@@ -64,7 +64,7 @@ Jika Anda ingin menjalankan proyek ini di komputer Anda sendiri:
 
 1.  **Clone repositori ini:**
     ```bash
-    git clone [https://github.com/xr-wahyu/IP-Lookup-Tool.git](https://github.com/xr-wahyu/IP-Lookup-Tool.git)
+    git clone https://github.com/xr-wahyu/IP-Lookup-Tool.git
     ```
 
 2.  **Masuk ke folder proyek:**
