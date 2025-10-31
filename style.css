@@ -156,6 +156,10 @@ main {
     min-width: 200px;
     color: #000;
     font-weight: 500;
+
+    /* --- TAMBAHKAN DUA BARIS INI --- */
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 #ip-address-display {
     font-size: 1.75rem;
