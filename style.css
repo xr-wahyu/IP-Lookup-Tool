@@ -236,3 +236,45 @@ details[open] summary::after {
     padding: 2rem 0;
     margin-top: 2rem;
 }
+
+/* == Media Query untuk Mobile (Layar di bawah 600px) == */
+
+@media (max-width: 600px) {
+
+    /* Kontainer utama sedikit lebih rapat di HP */
+    .container {
+        padding: 0 1rem;
+    }
+
+    /* Ubah form input jadi vertikal */
+    #lookup-form {
+        flex-direction: column; /* Susun ke bawah */
+        gap: 1rem; /* Beri jarak antar elemen */
+    }
+
+    /* Judul header dikecilkan sedikit */
+    .site-header h1 {
+        font-size: 1.8rem;
+    }
+
+    /* Padding di dalam 'card' dikecilkan */
+    .card {
+        padding: 1.5rem;
+    }
+
+    /* Di bagian hasil, buat label dan data 
+      tersusun ke bawah agar tidak berantakan 
+    */
+    .result-row {
+        flex-direction: column; /* Susun ke bawah */
+        align-items: flex-start; /* Rata kiri */
+        gap: 0.25rem; /* Jarak kecil */
+        padding: 0.75rem 0;
+    }
+
+    .result-row strong {
+        /* Hapus flex-basis agar lebarnya otomatis */
+        flex-basis: auto; 
+        color: #3498db; /* Beri warna agar jelas itu label */
+    }
+}
