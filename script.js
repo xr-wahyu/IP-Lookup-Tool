@@ -201,24 +201,54 @@ document.addEventListener('DOMContentLoaded', (event) => {
             pdfBtn.textContent = 'Membuat PDF...';
             pdfBtn.disabled = true;
 
+            const elementToCapture = document.getElementById('result-box');
+
             // Pustaka html2canvas di-load dari window
-            window.html2canvas(resultBox, { 
-                scale: 2 
+            window.html2canvas(elementToCapture, { 
+                scale: 2 // Skala 2x untuk kualitas lebih baik
             }).then(canvas => {
                 const imgData = canvas.toDataURL('image/png');
+                
+                // --- AWAL LOGIKA BARU YANG DIPERBAIKI ---
+
+                // 1. Dapatkan dimensi canvas (gambar hasil tangkapan)
+                const canvasWidth = canvas.width;
+                const canvasHeight = canvas.height;
+
+                // 2. Buat PDF standar A4 (portrait)
+                // Kita ganti unit dari 'px' ke 'pt' (points), ini standar PDF
                 const doc = new jsPDF({
                     orientation: 'portrait',
-                    unit: 'px',
-                    format: [canvas.width, canvas.height]
+                    unit: 'pt',
+                    format: 'a4'
                 });
+
+                // 3. Dapatkan lebar halaman A4 (sudah dikurangi margin)
+                // Margin 40pt (20 kiri, 20 kanan)
+                const pdfPageWidth = doc.internal.pageSize.getWidth() - 40;
+
+                // 4. Hitung rasio
+                // Kita bagi lebar PDF dengan lebar gambar untuk dapat skala
+                const ratio = pdfPageWidth / canvasWidth;
+
+                // 5. Hitung tinggi gambar baru agar proporsional
+                const pdfImageHeight = canvasHeight * ratio;
+
+                // 6. Tambahkan gambar ke PDF
+                // (img, format, x, y, width, height)
+                // x=20 dan y=20 untuk memberi margin atas dan kiri
+                doc.addImage(imgData, 'PNG', 20, 20, pdfPageWidth, pdfImageHeight);
                 
-                doc.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
+                // --- AKHIR LOGIKA BARU ---
+
                 doc.save(`ip_details_${currentResultData.ip || 'data'}.pdf`);
                 
                 pdfBtn.textContent = '📄 Unduh .pdf';
                 pdfBtn.disabled = false;
+
             }).catch(err => {
-                alert('Gagal membuat PDF.');
+                console.error('Gagal membuat PDF:', err); // Log error
+                alert('Gagal membuat PDF. Coba lagi.');
                 pdfBtn.textContent = '📄 Unduh .pdf';
                 pdfBtn.disabled = false;
             });
