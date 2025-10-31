@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pemeriksa Detail IP - IP Lookup Tool</title>
+    
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="container">
+            <h1>🌐 IP Address Lookup Tool</h1>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <button id="my-ip-btn" class="btn btn-secondary">🕵️‍♂️ Cek IP Saya Saat Ini</button>
+
+        <div class="card">
+            <h2>Masukkan IP Address</h2>
+            <form id="lookup-form">
+                <input type="text" id="ip-input" placeholder="Contoh: 8.8.8.8 atau 2001:4860:4860::8888" required>
+                <button type="submit" class="btn btn-primary">Cari</button>
+            </form>
+        </div>
+
+        <div id="result-wrapper" class="card">
+            <div id="result-box">
+                <div id="result-content">
+                    <p>Silakan masukkan IP atau klik tombol "Cek IP Saya".</p>
+                </div>
+            </div>
+            
+            <div class="loader"></div>
+
+            <div id="action-buttons" style="display: none;">
+                <button id="copy-btn" class="btn btn-action">📋 Salin Teks</button>
+                <button id="json-btn" class="btn btn-action">💾 Unduh .json</button>
+                <button id="pdf-btn" class="btn btn-action">📄 Unduh .pdf</button>
+            </div>
+        </div>
+
+        <section id="faq">
+            <h2 class="faq-title">Frequently Asked Questions (FAQ)</h2>
+            <details>
+                <summary>Apa itu IP Address?</summary>
+                <div class="faq-content">
+                    <p>IP (Internet Protocol) Address adalah label numerik unik yang diberikan ke setiap perangkat yang terhubung ke jaringan komputer yang menggunakan Internet Protocol untuk komunikasi. Ini seperti alamat rumah Anda, tetapi untuk perangkat Anda di internet.</p>
+                </div>
+            </details>
+            <details>
+                <summary>Apa bedanya IPv4 dan IPv6?</summary>
+                <div class="faq-content">
+                    <p><strong>IPv4</strong> (Contoh: 172.217.14.228) adalah versi lama yang memiliki sekitar 4.3 miliar alamat. Karena jumlah perangkat yang terhubung ke internet meledak, alamat IPv4 hampir habis.</p>
+                    <p><strong>IPv6</strong> (Contoh: 2001:4860:4860::8888) adalah versi baru yang memiliki jumlah alamat yang jauh lebih besar, secara praktis tidak terbatas, untuk menggantikan IPv4.</p>
+                </div>
+            </details>
+            <details>
+                <summary>Apakah lokasi yang ditampilkan 100% akurat?</summary>
+                <div class="faq-content">
+                    <p>Tidak. Lokasi IP didasarkan pada database yang disediakan oleh ISP (Internet Service Provider). Akurasi bisa bervariasi. Biasanya akurat hingga tingkat kota atau kode pos, tetapi jarang akurat hingga tingkat alamat jalan atau RT/RW.</p>
+                </div>
+            </details>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; <span id="current-year"></span> Wahyu Sudrajad. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
